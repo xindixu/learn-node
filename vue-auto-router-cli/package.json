@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
+    "commander": "^6.2.1",
+    "download-git-repo": "^3.0.2",
+    "figlet": "^1.5.0",
+    "handlebars": "^4.7.6",
+    "open": "^7.3.1",
+    "ora": "^5.2.0"
+  },
+  "name": "vue-auto-router-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "vue-auto-router": "./bin/index.js"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5"
+  }
+}
