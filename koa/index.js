@@ -9,15 +9,8 @@ const app = new Koa();
 //   console.log(`url: ${ctx.url} and takes: ${parseInt(end - start)}ms`);
 // });
 
-// app.use((ctx, next) => {
-//   ctx.body = {
-//     name: "tom",
-//   };
-// });
-
-app.use((req, res) => {
-  res.writeHead(200);
-  res.end("Hi");
+app.use((ctx) => {
+  ctx.body = "888";
 });
 
 app.listen(3000);
