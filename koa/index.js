@@ -44,4 +44,8 @@ router.post("/index", async (ctx) => {
 
 app.use(router.routes());
 
+const staticHandler = require("./src/static");
+
+app.use(staticHandler(`${__dirname}/src/public`));
+
 app.listen(3000);

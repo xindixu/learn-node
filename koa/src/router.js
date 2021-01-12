@@ -20,15 +20,12 @@ class Router {
     return async (ctx, next) => {
       const path = ctx.url;
       const { method } = ctx;
-      console.log(method);
       const map = method === "get" ? this.getMap : this.postMap;
 
       const fn = map.get(path);
       if (fn) {
         await fn(ctx);
       }
-
-      console.log(fn);
 
       await next();
     };
