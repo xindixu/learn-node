@@ -4,20 +4,41 @@ const request = require("./request");
 const response = require("./response");
 
 class xKoa {
-  constructor() {}
+  constructor() {
+    this.middlewares = [];
+  }
 
-  use(callback) {
-    this.callback = callback;
+  use(middleware) {
+    this.middlewares.push(middleware);
   }
 
   listen(...args) {
-    const server = http.createServer((req, res) => {
+    const server = http.createServer(async (req, res) => {
       const ctx = this.createContext(req, res);
-      this.callback(ctx);
+      // create middleware
+
+      const fn = this.compose(this.middlewares);
+      await fn(ctx);
+      // response
       res.end(ctx.body);
     });
 
     server.listen(...args);
+  }
+
+  compose(middlewares) {
+    return function (ctx) {
+      const dispatch = (index) => {
+        const fn = middlewares[index];
+
+        if (!fn) {
+          return Promise.resolve();
+        }
+        return Promise.resolve(fn(ctx, () => dispatch(index + 1)));
+      };
+
+      return dispatch(0);
+    };
   }
 
   createContext(req, res) {
